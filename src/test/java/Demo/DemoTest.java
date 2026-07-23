@@ -6,7 +6,7 @@ public class DemoTest {
 	
 	
 	@Test(groups = "smoke")
-	public void ActorTest() {
+	public void ActorsTesting() {
 		System.out.println("Avatars");
 	}
 }
