@@ -6,7 +6,7 @@ public class DemoTest {
 	
 	
 	@Test(groups = "smoke")
-	public void movieTest() {
+	public void ActorTest() {
 		System.out.println("Avatars");
 	}
 }
