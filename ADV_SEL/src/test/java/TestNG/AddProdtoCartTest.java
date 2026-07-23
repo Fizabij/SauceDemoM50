@@ -1,0 +1,52 @@
+package TestNG;
+
+import java.io.FileInputStream;
+import java.time.Duration;
+import java.util.Properties;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import GenericUtility.ExcelUtility;
+import GenericUtility.PropertiesFiles;
+import GenericUtility.WebDriverUtility;
+import ObjectRepo.CartPage;
+import ObjectRepo.LoginPage;
+import ObjectRepo.ProductsPage;
+import TestNG.BaseClass;
+
+@Listeners(ListenersUtility.ListenerImplementation.class)
+public class AddProdtoCartTest extends BaseClass {
+
+	@Test(groups= "smoke")
+	public void toAddProdtoCartTest() throws Throwable {
+		
+		ExcelUtility eutil= new ExcelUtility();
+		
+	
+		String et= eutil.toReadDatafromExcel("Sheet1", 1, 2);
+		
+		ProductsPage pp= new ProductsPage(driver);
+		CartPage cp = new CartPage(driver);
+		pp.getProdname().click();
+		pp.getAddtocartBtn().click();
+		pp.getCartIcon().click();
+		
+		
+		String item=cp.getInventItem().getText();
+		Assert.assertEquals(item, et);
+		
+	}
+	
+}
+
